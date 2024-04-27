@@ -1,6 +1,6 @@
 package api.tech.lab.infrastructure.adapter
 
-import api.tech.lab.domain.User
+import api.tech.lab.user.domain.User
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
@@ -16,7 +16,7 @@ import org.springframework.jdbc.core.PreparedStatementCreator
 class JdbcUserAdapterTest {
 
     private val jdbcTemplate: JdbcTemplate = mockk(relaxed = true)
-    private val jdbcUserAdapter = JdbcUserAdapter(jdbcTemplate)
+    private val jdbcUserAdapter = JdbcCharacterAdapter(jdbcTemplate)
 
     @Test
     fun `save should save user and return with generated id`() {
@@ -48,7 +48,7 @@ class JdbcUserAdapterTest {
             throw DataAccessResourceFailureException("Database access error occurred")
         }
 
-        assertThrows(JdbcUserAdapter.CustomDatabaseException::class.java){
+        assertThrows(JdbcCharacterAdapter.CustomDatabaseException::class.java){
             jdbcUserAdapter.save(user)
         }
     }

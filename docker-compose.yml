@@ -1,17 +1,13 @@
 version: '3.8'
-
 services:
-  mysql:
-    image: mysql:latest
+  db:
+    image: postgres:latest
     environment:
-      MYSQL_DATABASE: COPERNICO
-      MYSQL_USER: developer
-      MYSQL_PASSWORD: developer
-      MYSQL_ROOT_PASSWORD: root_password
+      POSTGRES_USER: developer
+      POSTGRES_PASSWORD: developer
+      POSTGRES_DB: rickandmorty
     ports:
-      - "3306:3306"
+      - "5432:5432"
     volumes:
-      - mysql_data:/var/lib/mysql
-
-volumes:
-  mysql_data:
+      - ./init:/docker-entrypoint-initdb.d
+      - ./postgres/data:/var/lib/postgresql/data
