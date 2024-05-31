@@ -19,8 +19,8 @@ data class Status constructor(val type: Type, val createdAt: LocalDate) {
      * @throws InvalidStatusTransitionException if the current status is not ALIVE,
      *         indicating that a transition to DEAD is not permitted from the current state.
      */
-    fun transitionToDead(currentStatus: Status): Status {
-        if (currentStatus.type != Type.ALIVE) {
+    fun transitionToDead(): Status {
+        if (this.type != Type.ALIVE) {
             throw InvalidStatusTransitionException("Transition only allowed from ALIVE to DEAD.")
         }
         return Status(Type.DEAD, LocalDate.now())

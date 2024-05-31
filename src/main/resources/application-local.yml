@@ -1,10 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/database
+    url: jdbc:postgresql://localhost:5432/rickandmorty
     username: developer
     password: developer
     driver-class-name: org.postgresql.Driver
-
   jpa:
     hibernate:
       ddl-auto: update
